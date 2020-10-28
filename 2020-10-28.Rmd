@@ -1,0 +1,60 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Hannah"
+date: "2020-10-28"
+output: output_format
+params:
+  id: "410782022"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+numVector <- c(2, 3, 6, -1, 4, 2, 6)
+select1 <- numVector[c(1, 4)]
+select1
+select2 <- select1[[1]]
+select2
+```
+```{r}
+numVector[c(1, 4)][[1]]
+```
+```{r}
+numVector[c(T, T, F, T, F, F, T)][c(1, 4)]
+```
+```{r}
+today <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+tomorrow <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+
+weather <- list(today, tomorrow)
+
+print(weather)
+```
+```{r}
+weather[[1]][[2]]$highest_temp  # 今天/新北市/highest_temp
+weather[[2]][[2]]$highest_temp  # 明天/新北市/highest_temp
+```
+```{r}
+a <- c("1", "b", "TRUE")
+a
+a[[2]] <- "c"  # 元素存在: 替換
+a[[4]] <- "7"  # 元素不存在： 增加
+a[c(5, 6)] <- c("J", "K")
+a
+```
+```{r}
+# 更改日期
+list1[[1]]$birthday <- ymd("1997-03-21")
+
+# 新增資料
+list1[[2]] <- list(name = "Mary", birthday = ymd("1998-08-24"))
+
+str(list1)
+```
+
