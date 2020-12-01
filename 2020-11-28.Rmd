@@ -1,0 +1,215 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Hannah"
+date: "2020-11-28"
+output: output_format
+params:
+  id: "410782022"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+# 有多少位置可選：
+length(listExample)
+```
+```{r}
+str(listExample[c(F,T)]) # 不要，要
+str(listExample[c(T,T)]) # 要，要
+```
+```{r}
+vectorExample <- c("小明","小英","大雄")
+
+# 有多少位置可選：
+length(vectorExample)
+```
+```{r}
+vectorExample
+vectorExample[c(T,T,F)] # 要，要，不要
+```
+```{r}
+get1 <- listExample[["學期"]]
+get2 <- listExample["學期"]
+```
+```{r}
+get1 # 學期拿出來，有3個元素的list
+str(get1)
+```
+```{r}
+get2 # listExample 只留下 學期元素，是個只有一個元素的list
+str(get2)
+```
+```{r}
+numVector <- c(2,3,6,-1,4,2,6)
+select1 <- numVector[c(1,4)]
+select1
+select2 <- select1[[1]]
+select2
+
+# 相當於
+numVector[c(1,4)][[1]]
+```
+```{r}
+majors <- c("經濟學系","經濟學系","社會學系","社工系","經濟學系")
+names <- c("小英", "小美", "大雄","阿華", "阿尼")
+gender <- c("F","F","M","F","M")
+```
+```{r}
+majors[c(T,T,F,F,T)]
+```
+```{r}
+today <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+```{r}
+weather[[1]][[2]][[2]] # 今天/新北市/highest_temp
+weather[[2]][[2]][[2]] # 明天/新北市/highest_temp
+```
+```{r}
+weather$highest_temp # 今天/新北市/highest_temp
+weather$highest_temp # 明天/新北市/highest_temp
+```
+```{r}
+AA = c(Mary=176, John=188, Jenny= 165, Kate=170)
+LL = list(
+  Mary=list(176,"Taipei"),
+  John=list(188,"New Taipei"),
+  Jenny=list(165,"Taichung"),
+  Kate=list(170,"Hualien")
+)
+```
+```{r}
+AA[[1]]
+AA[1]
+```
+```{r}
+LL[[1]]
+LL[1]
+```
+```{r}
+LL$Mary
+```
+```{r}
+a <- c(2, 5, 7)
+a[[4]]
+```
+```{r}
+a[[4]] <- 8
+print(a)
+```
+```{r}
+a <- c(2, 5, 7)
+a[c(4,5)]
+```
+```{r}
+a[c(4,5)] <- c(8,12)
+print(a)
+```
+```{r}
+restaurant = "すき家 Sukiya (新北三峽店)"
+date = lubridate::mdy("Nov 10, 2020")
+order = list(
+  list(
+    item="蕃茄牛丼",
+    quantity=1
+  ) # 這裡少了一筆 "起司蕃茄牛丼"
+)
+total = 328
+```
+```{r}
+oneOrder <- list(
+  "restaurant"=restaurant,
+  "date"=date,
+  "order"=order,
+  "total"=total
+)
+```
+```{r}
+oneOrder$order[[2]]
+```
+```{r}
+oneOrder$order[[2]] <- list(
+    item="起司蕃茄牛丼",
+    quantity=1
+  )
+```
+```{r}
+template <- oneOrder$order[[1]]
+
+template$item <- "起司蕃茄牛丼"
+template$quantity <- 1
+
+oneOrder$order[[2]] <- template
+```
+```{r}
+currentNumberOfOrder <- length(oneOrder$order)
+# new order sequence number
+newOrderSeq <- 1:2 + currentNumberOfOrder
+oneOrder$order[newOrderSeq]
+```
+```{r}
+library(lubridate)
+```
+
+```{r}
+LL0 <- LL <- list(
+  "Mary was born on", 
+  ymd("1995-7-1"),
+  "John was born on",
+  ymd("1997-10-27")
+  )
+LL[[2]]
+```
+```{r}
+LL <- LL0
+LL[c(2,4)]
+LL[c(2,4)] <- 
+  list(
+    ymd("1995-7-8"),
+    ymd("1997-10-17")
+  )
+print(LL[c(2,4)])
+```
+```{r}
+a <- c("L", "K", "Z")
+a <- a[c(1,3)]
+print(a)
+```
+
+
+
+
+
+
