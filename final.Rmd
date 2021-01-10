@@ -15,12 +15,8 @@ library(lubridate); library(jsonlite); library(readr); library(stringr); library
 
 ## 1. 選課系統
 
-
 ```{r data1}
-jsonlite::fromJSON("https://www.dropbox.com/s/b3atn1v039dmfqt/courseStructure.json?dl=1") -> courses
-ansObj11 <- list()
-ansObj12 <- list()
-courses107 <- subset(courses, courses$學年=="107")
+jsonlite::fromJSON("https://www.dropbox.com/s/t09nrzwx8mw6azn/courses107.json?dl=1") -> courses107
 ```
 
 ### 1.1 應修學系
@@ -44,7 +40,7 @@ Return: a logical vector，其中TRUE/FALSE要依followByAlnum設定判斷。
 ```{r ans111}
 generate_pickFromCategories <- NULL
 ###
-
+generate_pickFromCategories <- function(source,categories,followByAlnum=TRUE)
 
 ###
 ansObj11[[1]] <- list(
@@ -87,7 +83,26 @@ categories2
 ```{r ans112}
 pickBasedOnCategories <- NULL
 ###
+majors <- sample(c("歷史","應外","統計"), 8, replace=T)
+alnums <- paste0(
+  sample(c(as.character(1:4),""), 8, replace=T),
+  sample(c("","A","B"), 8, replace=T)
+)
+source2 <- paste0(majors, alnums)
+source2
 
+n_choose <- sample(1:2,1)
+categories2 <- sample(c("歷史","應外","統計"), n_choose)
+categories2
+
+
+# 取得前面的中文
+str = str_extract(source2, pattern='[\u4E00-\u9FFF]+')
+
+# 判斷**source2**的元素值，個別是否有出現**categories2**字眼
+for(cat in categories2){
+  print(str_detect(str, cat))
+}
 
 
 ###
@@ -123,7 +138,30 @@ pickHistory <- NULL
 pickExactHistory <- NULL
 pickByFlag <- NULL
 ###
+majors <- sample(c("歷史","應外","統計"), 30, replace=T)
+alnums <- paste0(
+  sample(c(as.character(1:4),""), 30, replace=T),
+  sample(c("","A","B"), 30, replace=T)
+)
+source3 <- paste0(majors, alnums)
+source3
+flag_exact <- sample(c(T,F),1)
 
+
+
+pickExactHistory <- source3 == '歷史'
+# pickExactHistory
+
+pickHistory <- str_detect(source3, '歷史')
+# pickHistory
+
+if(flag_exact){
+  pickByFlag <- pickExactHistory
+}else{
+  pickByFlag <- pickHistory
+}
+# flag_exact
+# pickByFlag
 
 
 ###
